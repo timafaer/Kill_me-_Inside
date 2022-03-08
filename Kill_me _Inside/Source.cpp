@@ -3,7 +3,7 @@
 int main() {
 	Game g;
 	Editor e(&g);
-	e.map();
+	e.joke();
 	g.main_loop();
 	return 0;
 }

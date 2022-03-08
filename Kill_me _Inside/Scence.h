@@ -22,5 +22,11 @@ public:
 			for (auto i : drawing)
 				target.draw(*i, states);
 	}
-
+	void logic() {
+		for (auto& i : objects) {
+			for (auto& j : i.second) {
+				j.logic();
+			}
+		}
+	}
 };

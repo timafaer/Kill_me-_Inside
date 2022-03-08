@@ -5,9 +5,11 @@ class Entity : public sf::Drawable, public sf::Transformable
 {
 private:
 	std::vector<Component*> comps;
-	sf::Vector2f pos;
+	Soul* soul;
+	
 	friend Editor;
 public:
+	sf::Vector2f pos;
 	int deep = 0;
 	Entity() {
 		pos = sf::Vector2f(0, 0);
@@ -30,4 +32,6 @@ public:
 		states.transform.translate(pos);
 		target.draw(comp<Draw>(), states);
 	}
+
+	void logic() { soul->logic(); }
 };

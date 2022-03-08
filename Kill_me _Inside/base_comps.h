@@ -3,6 +3,9 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#include"helper.h"
+
+class Game;
 class Editor;
 class Component
 {
@@ -77,4 +80,39 @@ public:
 			}
 		fin.close();
 	}
+};
+
+class Scence;
+class Entity;
+
+class Soul {
+protected:
+	Editor* edit;
+	Entity* comps;
+	Scence* scence;
+	Game* core;
+	friend Editor;
+public:
+	Soul() {}
+	Soul(Entity* comps, Scence* scence, Editor* edit, Game* core) :
+		comps{ comps }, scence{ scence }, edit{ edit }, core{ core } {}
+	virtual void set(Entity* comps, Scence* scence, Editor* edit,Game* core)
+	{
+		this->comps = comps; this->scence = scence; this->edit = edit; this->core = core;
+	}
+	virtual void logic() {}
+};
+
+class Joker : public Soul
+{
+	Animat anim[4];
+	float s = 1;
+public:
+
+	void set(Entity* comps, Scence* scence, Editor* edit,Game* core);
+
+	static void ani(Animat& anim,Soul* soul);
+
+	void logic();
+
 };

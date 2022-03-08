@@ -12,6 +12,7 @@ public:
 	sf::RenderWindow window;
 	Game() {
 		window.create(sf::VideoMode(800, 600), "Kill_Me_Inside");
+		window.setFramerateLimit(60);
 		redact = &n_scence;
 	}
 
@@ -21,6 +22,7 @@ public:
 				if (event.type == sf::Event::Closed)
 					window.close();
 			window.clear();
+			n_scence.logic();
 			window.draw(n_scence);
 			window.display();
 		}
