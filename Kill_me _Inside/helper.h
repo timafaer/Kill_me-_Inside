@@ -4,7 +4,7 @@
 #include<fstream>
 #include<string>
 #include<SFML/Graphics.hpp>
-
+//колайдер (пока не используется)
 class Colider
 {
 	std::vector<sf::Vector2f> points;
@@ -70,7 +70,7 @@ public:
 	}
 };
 class Soul;
-struct Animat {
+struct Animat {//структура для анимации
 	int now = 0;
 	int count = 0;
 	sf::Clock time;

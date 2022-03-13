@@ -20,7 +20,7 @@ void Joker::set(Entity* comps, Scence* scence, Editor* edit,Game* core){
 
 }
 
-void Joker::ani(Animat& anim,Soul* soul) {
+void Joker::ani(Animat& anim,Soul* soul) {//анимация
 	int t = anim.time.getElapsedTime().asMilliseconds();
 	int m = 500;
 	if (t >= m - 10) {
@@ -37,8 +37,7 @@ void Joker::ani(Animat& anim,Soul* soul) {
 	
 }
 
-void Joker::logic() {
-	auto& eve = core->event;
+void Joker::logic() {//пример логики
 	using key = sf::Keyboard::Key;
 	using k = sf::Keyboard;
 	
@@ -46,15 +45,15 @@ void Joker::logic() {
 		anim[3].func(anim[3], this);
 		comps->pos += sf::Vector2f(0, -s);
 	}
-	else if (k::isKeyPressed(key::A)) {
+	 if (k::isKeyPressed(key::A)) {
 		anim[1].func(anim[1], this);
 		comps->pos += sf::Vector2f(-s, 0);
 	}
-	else if (k::isKeyPressed(key::S)) {
+	if (k::isKeyPressed(key::S)) {
 		anim[0].func(anim[0], this);
 		comps->pos += sf::Vector2f(0, s);
 	}
-	else if (k::isKeyPressed(key::D)) {
+	if (k::isKeyPressed(key::D)) {
 		anim[2].func(anim[2], this);
 		comps->pos += sf::Vector2f(s, 0);
 	}

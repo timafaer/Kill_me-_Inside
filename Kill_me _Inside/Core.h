@@ -1,11 +1,11 @@
 #pragma once
 #include"Scence.h"
 
-class Game
+class Game//главный класс 
 {
 private:
-	Scence n_scence;
-	Scence* redact;
+	Scence n_scence;//В ДАННЫЙ МОМЕНТ 1 СЦЕНА (ПОКА ЧТО)
+	Scence* redact;//при редактировании - указатель на текущую сцену
 	friend Editor;
 public:
 	sf::Event event;
@@ -22,8 +22,8 @@ public:
 				if (event.type == sf::Event::Closed)
 					window.close();
 			window.clear();
-			n_scence.logic();
-			window.draw(n_scence);
+			n_scence.logic();//логика объектов
+			window.draw(n_scence);//отрисовка
 			window.display();
 		}
 	}

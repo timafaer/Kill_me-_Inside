@@ -40,4 +40,6 @@ public:
 		j.comp<Draw>().set_texture(&textures[texturname]);
 	}
 
+	
+
 };

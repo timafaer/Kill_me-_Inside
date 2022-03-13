@@ -7,7 +7,7 @@
 
 class Game;
 class Editor;
-class Component
+class Component// базовый класс
 {
 public:
 	virtual const char* type() { return typeid(Component).name(); }
@@ -15,7 +15,7 @@ protected:
 	friend Editor;
 };
 
-class Draw : public Component,public sf::Drawable,public sf::Transformable 
+class Draw : public Component,public sf::Drawable,public sf::Transformable //базовый класс отрисовки
 {
 protected:
 	sf::Drawable* obj;
@@ -38,7 +38,7 @@ public:
 	}
 };
 
-class Map : public Component 
+class Map : public Component //базовый класс тайл карты
 {
 protected:
 	sf::VertexArray m_vertices;
@@ -85,7 +85,7 @@ public:
 class Scence;
 class Entity;
 
-class Soul {
+class Soul {//базовый класс души
 protected:
 	Editor* edit;
 	Entity* comps;
@@ -103,7 +103,7 @@ public:
 	virtual void logic() {}
 };
 
-class Joker : public Soul
+class Joker : public Soul//производный класс от души (для анимации)
 {
 	Animat anim[4];
 	float s = 1;
