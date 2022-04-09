@@ -4,7 +4,9 @@
 #include<string>
 #include<fstream>
 #include"helper.h"
-
+#include<map>
+#include<utility>
+#include<string>
 class Game;
 class Editor;
 class Component// базовый класс
@@ -15,28 +17,29 @@ protected:
 	friend Editor;
 };
 
-class Draw : public Component,public sf::Drawable,public sf::Transformable //базовый класс отрисовки
+
+
+class Draw : public Component, public sf::Drawable, public sf::Transformable //базовый класс отрисовки
 {
 protected:
-	sf::Drawable* obj;
-	sf::Texture* texture;
+	std::map<std::string, std::pair<sf::Drawable*, sf::Texture*>> objs;
+
 	friend Editor;
 public:
 	virtual const char* type() { return typeid(Draw).name(); }
-	void set_obj(sf::Drawable* obj) { this->obj = obj; }
-	void set_texture(sf::Texture* texture) { this->texture = texture; }
+	void set_obj(sf::Drawable* obj, std::string name = "null") { this->objs[name].first = obj; }
+	void set_texture(sf::Texture* texture, std::string name = "null") { this->objs[name].second = texture; }
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states)const {
-		if (!Is_NULL()) {
-			states.texture = texture;
-			target.draw(*obj, states);
+		for (const auto& obj : objs) {
+			states.texture = obj.second.second;
+			target.draw(*obj.second.first, states);
 		}
 	}
+	bool Is_NULL() { return 1; }
 
-	bool Is_NULL()const {
-		return obj == nullptr;
-	}
 };
+
 
 class Map : public Component //базовый класс тайл карты
 {
@@ -105,8 +108,11 @@ public:
 
 class Joker : public Soul//производный класс от души (для анимации)
 {
-	Animat anim[4];
-	float s = 1;
+	Animat anim;
+	Healbar hpbar;
+	float s = 3;
+	float hp=100;
+	float maxhp = 100;
 public:
 
 	void set(Entity* comps, Scence* scence, Editor* edit,Game* core);

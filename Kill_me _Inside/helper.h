@@ -78,3 +78,9 @@ struct Animat {//структура для анимации
 	sf::Vector2f center;
 	void (*func)(Animat&, Soul*);// or std function
 };
+
+struct Healbar {
+	sf::RectangleShape bacground;
+	sf::RectangleShape hpbar;
+
+};

@@ -21,7 +21,7 @@ public:
 			while (window.pollEvent(event))
 				if (event.type == sf::Event::Closed)
 					window.close();
-			window.clear();
+			window.clear(sf::Color(255,255,255));
 			n_scence.logic();//логика объектов
 			window.draw(n_scence);//отрисовка
 			window.display();
